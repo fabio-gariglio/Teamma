@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 
 namespace FrontEnd
 {
@@ -27,7 +28,10 @@ namespace FrontEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
+            
+            //services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("172.21.0.2"));
+            services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
