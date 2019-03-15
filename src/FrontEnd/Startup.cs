@@ -28,9 +28,15 @@ namespace FrontEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+            ConfigureRedis(services, "redis");
+        }
+
+        private static void ConfigureRedis(IServiceCollection services, string redisHostname)
+        {
             //services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("172.21.0.2"));
+            
+            Console.WriteLine($"Connecting to redis host: {redisHostname}");
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
             services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));
         }
 

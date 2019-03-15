@@ -1,5 +1,16 @@
 version: '3'
 services:
+  frontend:
+    image: frontend:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+    - "5001:5001"
+    - "5000:5000"
+    - "80:80"
+    container_name: frontend
+    links:
+    - redis
   redis:
     image: redis
     container_name: redis
