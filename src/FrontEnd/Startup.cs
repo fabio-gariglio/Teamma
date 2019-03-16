@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FrontEnd.Options;
 using FrontEnd.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,15 +29,13 @@ namespace FrontEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            ConfigureRedis(services, "redis");
+            ConfigureRedis(services);
         }
 
-        private static void ConfigureRedis(IServiceCollection services, string redisHostname)
+        private void ConfigureRedis(IServiceCollection services)
         {
             //services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
-            
-            Console.WriteLine($"Connecting to redis host: {redisHostname}");
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
+            services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
             services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));
         }
 

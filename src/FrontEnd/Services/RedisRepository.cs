@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using FrontEnd.Options;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
@@ -8,9 +10,10 @@ namespace FrontEnd.Services
     {
         private readonly IConnectionMultiplexer _connectionMultiplexer;
 
-        public RedisRepository(IConnectionMultiplexer connectionMultiplexer)
+        public RedisRepository(IOptions<RedisOptions> redisOptionsAccessor)
         {
-            _connectionMultiplexer = connectionMultiplexer;
+            var redisOption = redisOptionsAccessor.Value;
+            _connectionMultiplexer = ConnectionMultiplexer.Connect(redisOption.HostName);
         }
         
         public Task Save(TKey key, TValue value)

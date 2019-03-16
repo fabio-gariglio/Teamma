@@ -15,8 +15,13 @@ Team management platform for Agile teams
 $ docker-compose up -d
 ```
 
-2. Get a given container IP
+Browse http://localhost:5000
+
+## Useful commands
+
+Build the FrontEnd
 
 ```bash
-$ docker inspect {container-id} | grep IPAddress
+$ dotnet publish -c Release
+$ docker build -t frontend /src/FrontEnd/.
 ```
