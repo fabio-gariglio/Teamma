@@ -3,7 +3,7 @@ services:
   frontend.api:
     image: frontend:latest
     ports:
-    - "80:5000"
+    - "80:80"
     container_name: frontend.api
     links:
     - redis.service
