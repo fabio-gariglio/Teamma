@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <SpaRoot>ClientApp</SpaRoot>
+    <DefaultItemExcludes>$(SpaRoot)\node_modules\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +12,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="StackExchange.Redis" Version="2.0.571" />
   </ItemGroup>
+
+  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+    <Exec WorkingDirectory="$(SpaRoot)\" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)\" Command="npm run build" />
+  </Target>
+
+  <ItemGroup>
+    <None Include="$(SpaRoot)\build\**" LinkBase="$(SpaRoot)\build">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
