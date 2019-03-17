@@ -106,3 +106,15 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
   </None>
 </ItemGroup>
 ```
+
+## Troubleshooting
+
+### Error "System limit for number of file watchers reached, watch"
+
+This error seems to only happen when the React development server runs within AspNet. As usual, Google gave me the answer!
+Following commands solved my problem on a Ubuntu based Distro.
+
+```bash
+$ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+$ sysctl --system
+```
