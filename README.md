@@ -54,7 +54,8 @@ npm install react-script --save-dev
 ```json
 {
   "scripts": {
-      "build": "react-scripts build"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   }
 }
 ```
@@ -85,4 +86,23 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     });
     // ...
 }
+```
+
+6. Copy the compiled React scripts into the output folder:
+```xml
+<PropertyGroup>
+  <SpaRoot>ClientApp</SpaRoot>
+  <DefaultItemExcludes>$(SpaRoot)\node_modules\**</DefaultItemExcludes>
+</PropertyGroup>
+  
+<Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+  <Exec WorkingDirectory="$(SpaRoot)\" Command="npm install" />
+  <Exec WorkingDirectory="$(SpaRoot)\" Command="npm run build" />
+</Target>
+
+<ItemGroup>
+  <None Include="$(SpaRoot)\build\**" LinkBase="$(SpaRoot)\build">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 ```
