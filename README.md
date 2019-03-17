@@ -35,7 +35,7 @@ ClientApp
 - public
   - index.html
 - src
-  - index.js
+  - index.tsx
 ```
 
 2. Initialize npm into the `ClientApp` folder:
@@ -49,13 +49,16 @@ npm install react --save
 npm install react-dom --save
 npm install react-script --save-dev
 npm install rimraf --save-dev
+npm install typescript --save-dev
+npm install @types/react --save-dev
+npm install @types/react-dom --save-dev
 ```
 
 4. Add the "build" npm command that transform the source JS files:
 ```json
 {
   "scripts": {
-    "start": "rimraf ./build && react-scripts start",
+    "start": "rimraf ./build && react-scripts start --typescript",
     "build": "react-scripts build"
   }
 }
@@ -84,6 +87,11 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseSpa(spa =>
     {
         spa.Options.SourcePath = "ClientApp";
+        
+        if (env.IsDevelopment())
+        {
+            spa.UseReactDevelopmentServer(npmScript: "start");
+        }
     });
     // ...
 }

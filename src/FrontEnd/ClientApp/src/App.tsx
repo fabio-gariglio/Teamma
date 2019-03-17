@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 import VisitsCounter from './components/VisitsCounter';
 
 export default class App extends Component {

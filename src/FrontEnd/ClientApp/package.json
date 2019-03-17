@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "react-scripts start",
+    "start": "rimraf ./build && react-scripts start --typescript",
     "build": "react-scripts build"
   },
   "author": "",
@@ -15,8 +14,11 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
     "react-scripts": "^2.1.8",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "typescript": "^3.3.3333"
   },
   "browserslist": [
     ">0.2%",
