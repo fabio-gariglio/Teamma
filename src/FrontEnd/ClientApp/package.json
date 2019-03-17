@@ -15,7 +15,8 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^2.1.8",
+    "rimraf": "^2.6.3"
   },
   "browserslist": [
     ">0.2%",

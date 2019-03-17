@@ -48,13 +48,14 @@ $ npm init
 npm install react --save
 npm install react-dom --save
 npm install react-script --save-dev
+npm install rimraf --save-dev
 ```
 
 4. Add the "build" npm command that transform the source JS files:
 ```json
 {
   "scripts": {
-    "start": "react-scripts start",
+    "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build"
   }
 }
