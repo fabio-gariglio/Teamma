@@ -1,4 +1,9 @@
-﻿using FrontEnd.Options;
+﻿using System;
+using System.Net.Http.Headers;
+using System.Text;
+using Atalassian.Issue;
+using FrontEnd.Extensions;
+using FrontEnd.Options;
 using FrontEnd.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +38,7 @@ namespace FrontEnd
 
         private void ConfigureRedis(IServiceCollection services)
         {
+            services.AddJiraSupport(Configuration);
             services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
             //services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
             //services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));

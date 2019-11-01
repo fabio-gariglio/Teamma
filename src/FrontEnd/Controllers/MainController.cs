@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Atalassian.Issue;
+using Core;
 using FrontEnd.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +15,10 @@ namespace FrontEnd.Controllers
     {
         private readonly IRepository<string, int> _counters;
 
-        public MainController(IRepository<string, int> _counters)
+        public MainController(IRepository<string, int> counters, IStoryRepository repository)
         {
-            this._counters = _counters;
+            _counters = counters;
+            repository.GetById(626143).Wait();
         }
         
         // GET api/values
