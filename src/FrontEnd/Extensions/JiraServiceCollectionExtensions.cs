@@ -2,6 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using Atalassian.Issue;
+using Atalassian.Sprint;
 using Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +20,8 @@ namespace FrontEnd.Extensions
                 c.BaseAddress = new Uri("https://jira.thetrainline.com");
                 c.DefaultRequestHeaders.Authorization = authenticationHeader;
             });
-            services.AddSingleton<IStoryRepository, StoryRepository>();
-            services.AddSingleton<IMapper<JiraIssue, Story>, JiraIssueToStoryMapper>();
+            services.AddSingleton<ISprintRepository, SprintRepository>();
+            services.AddSingleton<IMapper<JiraSprint, JiraIssueCollection, Sprint>, SprintMapper>();
 
             return services;
         }

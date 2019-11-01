@@ -15,10 +15,10 @@ namespace FrontEnd.Controllers
     {
         private readonly IRepository<string, int> _counters;
 
-        public MainController(IRepository<string, int> counters, IStoryRepository repository)
+        public MainController(IRepository<string, int> counters, ISprintRepository repository)
         {
             _counters = counters;
-            repository.GetById(626143).Wait();
+            repository.GetById(5259).Wait();
         }
         
         // GET api/values
