@@ -33,9 +33,9 @@ namespace FrontEnd
 
         private void ConfigureRedis(IServiceCollection services)
         {
-            //services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
-            services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
-            services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));
+            services.AddSingleton(typeof(IRepository<,>), typeof(InMemoryRepository<,>));
+            //services.Configure<RedisOptions>(Configuration.GetSection("Redis"));
+            //services.AddSingleton(typeof(IRepository<,>), typeof(RedisRepository<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
