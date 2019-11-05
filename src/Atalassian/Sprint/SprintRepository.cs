@@ -42,7 +42,7 @@ namespace Atalassian.Sprint
         {
             using (var client = _httpClientFactory.CreateClient("jiraClient"))
             {
-                var payload = await client.GetStringAsync($"/rest/agile/latest/sprint/{sprintId}/issue?fields=summary&expand=changelog");
+                var payload = await client.GetStringAsync($"/rest/agile/latest/sprint/{sprintId}/issue?fields=summary,issuetype,components,epic&expand=changelog");
                 var jiraIssueCollection = JsonConvert.DeserializeObject<JiraIssueCollection>(payload);
 
                 return jiraIssueCollection;

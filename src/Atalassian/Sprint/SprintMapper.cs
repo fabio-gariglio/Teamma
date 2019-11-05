@@ -21,7 +21,10 @@ namespace Atalassian.Sprint
         {
             return new Story
             {
-                Id = source.Key
+                Id = source.Key,
+                Title = source.Fields.Summary,
+                Type = source.Fields.IssueType.Name,
+                Components = source.Fields.Components.Select(c => c.Name)
             };
         }
     }
