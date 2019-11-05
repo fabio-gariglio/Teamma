@@ -21,6 +21,7 @@ namespace FrontEnd.Extensions
                 c.DefaultRequestHeaders.Authorization = authenticationHeader;
             });
             services.AddSingleton<ISprintRepository, SprintRepository>();
+            services.AddSingleton<ISpikeReporter, SpikeReporter>();
             services.AddSingleton<IMapper<JiraSprint, JiraIssueCollection, Sprint>, SprintMapper>();
 
             return services;
